@@ -8,7 +8,8 @@ async def on_ready():
     print("Success: Bot is connected to Discord")
 
 @client.command()
-async def hi(ctx):
-    await ctx.send("よっ")
+async def ping(ctx):
+    bot_latency=round(client.latency*1000)
+    await ctx.send(f"the current ping of あきとロボ: {bot_latency}ms")
 
 client.run("MTI2NTkyMjIxODc4NjAyOTYwOA.GPOcUG.22lGnV8oYt9uxdh27ojraaWNciTZo1pIKPB7XE")

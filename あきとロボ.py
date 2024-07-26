@@ -1,15 +1,10 @@
 import discord
 from discord.ext import commands
 
-client=commands.Bot(command_prefix=">",intents=discord.Intents.all())
+bot=commands.Bot(command_prefix="%",intents=discord.Intents.all())
 
-@client.event
+@bot.event
 async def on_ready():
-    print("Success: Bot is connected to Discord")
+    print("Bot ready")
 
-@client.command()
-async def ping(ctx):
-    bot_latency=round(client.latency*1000)
-    await ctx.send(f"the current ping of あきとロボ: {bot_latency}ms")
-
-client.run("MTI2NTkyMjIxODc4NjAyOTYwOA.GPOcUG.22lGnV8oYt9uxdh27ojraaWNciTZo1pIKPB7XE")
+bot.run("MTI2NTkyMjIxODc4NjAyOTYwOA.GPOcUG.22lGnV8oYt9uxdh27ojraaWNciTZo1pIKPB7XE")

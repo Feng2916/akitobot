@@ -1,7 +1,7 @@
-NAME="あきとロボ"
+NAME="aktbot"
 AVATAR="https://imgur.com/gallery/cat-im-kitty-cat-LJwLF"
 TYPE=bot
-MAIN="あきとロボ.py"
+MAIN="aktbot.py"
 RAM=100
 AUTORESTART=false
 VERSION=latest

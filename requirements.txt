@@ -1,7 +1,7 @@
-NAME="aktbot"
-AVATAR="https://imgur.com/gallery/cat-im-kitty-cat-LJwLF"
+NAME=aktrobot
+AVATAR=https://imgur.com/gallery/cat-im-kitty-cat-LJwLF
 TYPE=bot
-MAIN="aktbot.py"
+MAIN=aktbot.py
 RAM=100
 AUTORESTART=false
 VERSION=latest

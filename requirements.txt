@@ -1,5 +1,5 @@
 NAME=aktrobot
-AVATAR=https://imgur.com/gallery/cat-im-kitty-cat-LJwLF
+AVATAR=https://cdn.discordapp.com/attachments/1266262752100618281/1266262781523394600/42f50d25b7e5d0c560044cc168478d14-removebg-preview.png?ex=66a7259d&is=66a5d41d&hm=34cdec90a7cdebf83200c060f249dfea1fb45e12ffbc3202cfb83fa17a82852d&
 TYPE=bot
 MAIN=aktbot.py
 RAM=100

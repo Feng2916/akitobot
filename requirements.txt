@@ -1,1 +1,1 @@
-pip freeze --user
+discord py

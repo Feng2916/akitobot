@@ -17,6 +17,10 @@ async def load():
         if filename.endswith(".py"):
             await bot.load_extension(f"cogs.{filename[:-3]}")
 
+@bot.command(aliases=("hello","嗨","哈囉"))
+async def hi(ctx):
+    await ctx.send("よっ")
+
 async def main():
     async with bot:
         await load()

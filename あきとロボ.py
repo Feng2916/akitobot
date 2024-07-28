@@ -6,16 +6,11 @@ from itertools import cycle
 
 bot=commands.Bot(command_prefix="%",intents=discord.Intents.all())
 
-bot_statuses=cycle(["プロセカ","プロセカ"])
-
-@tasks.loop(seconds=60)
-async def change_bot_status():
-    await bot.change_presence(activity=discord.Game(next(bot_statuses)))
-
 @bot.event
 async def on_ready():
     print("Bot ready")
-    change_bot_status.start()
+    activity = discord.Streaming(name="ULTRA C",url="https://www.youtube.com/watch?v=7WryveKlyX8")
+    await bot.change_presence(status = discord.Status.idle, activity = activity)
 
 async def load():
     for filename in os.listdir("./cogs"):

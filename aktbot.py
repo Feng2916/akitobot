@@ -28,15 +28,8 @@ async def ping(interaction:discord.Interaction):
     ping_embed.add_field(name=f"{bot.user.name}的延遲：",value=f"{round(bot.latency*1000)}ms",inline=False)
     await interaction.response.send_message(embed=ping_embed,ephemeral=True)
 
-
-async def load():
-    for filename in os.listdir("./cogs"):
-        if filename.endswith(".py"):
-            await bot.load_extension(f"cogs.{filename[:-3]}")
-
 async def main():
     async with bot:
-        await load()
         await bot.start("MTI2NTkyMjIxODc4NjAyOTYwOA.GPOcUG.22lGnV8oYt9uxdh27ojraaWNciTZo1pIKPB7XE")
 
 asyncio.run(main())

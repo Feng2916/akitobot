@@ -20,10 +20,6 @@ async def on_ready():
     except Exception as e:
         print(e)
 
-@bot.tree.command(name="hi",description="讓彰人跟你說嗨")
-async def hello(interaction:discord.Interaction):
-    await interaction.response.send_message(f"よっ")
-
 @bot.tree.command(name="ping",description="檢視機器人的延遲")
 async def ping(interaction:discord.Interaction):
     ping_embed=discord.Embed(title="Ping",color=discord.Color.orange())

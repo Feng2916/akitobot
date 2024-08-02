@@ -59,10 +59,10 @@ async def ping(interaction:discord.Interaction):
 async def pt1(interaction:discord.Interaction,pt:int,x:Choice[int],y:Choice[int]):
     x=x.value
     y=y.value
-    await interaction.response.send_message(f"換算後pt為{round(pt*(y/x))}")
+    await interaction.response.send_message(f"換算後pt為{pt*(y/x)}")
 
 @bot.tree.command(name="re-pt",description="估算投入特定資源可獲得的pt")
-@app_commands.describe(x="開幾火",pt="所選開火情況下單場pt",cs="投入水晶總數",l="投入大罐總數",s="投入小罐總數")
+@app_commands.describe(x="開幾火",t="歌曲總秒數",pt="所選開火情況下單場pt",cs="投入水晶總數",l="投入大罐總數",s="投入小罐總數")
 @app_commands.choices(
     x=[
         Choice(name="1",value=1),
@@ -77,9 +77,10 @@ async def pt1(interaction:discord.Interaction,pt:int,x:Choice[int],y:Choice[int]
         Choice(name="10",value=10),
     ]
 )
-async def pt2(interaction:discord.Interaction,x:int,pt:int,cs:int,l:int,s:int):
-    await interaction.response.send_message(f"可獲得{round((cs/10+l*10+s)/x*pt)}pt\n"
-                                            f"共需打{math.ceil((cs/10+l*10+s)/x)}場")
+async def pt2(interaction:discord.Interaction,x:int,t:int,pt:int,cs:int,l:int,s:int):
+    await interaction.response.send_message(f"可獲得{round(math.floor((cs/10+l*10+s)/x)*pt)}pt\n"
+                                            f"共需打{math.floor((cs/10+l*10+s)/x)}場\n"
+                                            f"需時{math.floor((math.floor((cs/10+l*10+s)/x)*t)/3600)}小時{math.floor((math.floor((cs/10+l*10+s)/x)*t)%3600/60)}分鐘")
 
 @bot.tree.command(name="pt-re",description="估算達到特定pt所需投入的資源")
 @app_commands.describe(x="開幾火",pt="所選開火情況下單場pt",r="目前的pt",e="欲達到的pt")
@@ -98,7 +99,7 @@ async def pt2(interaction:discord.Interaction,x:int,pt:int,cs:int,l:int,s:int):
     ]
 )
 async def pt3(interaction:discord.Interaction,x:int,pt:int,r:int,e:int):
-    await interaction.response.send_message(f"再打{math.ceil((e-r)/pt)}場可達到{e}pt\n"
-                                            f"共需投入{(math.ceil((e-r)/pt))*x*10}水晶")
+    await interaction.response.send_message(f"再打{(e-r)/pt}場可達到{e}pt\n"
+                                            f"共需投入{((e-r)/pt)*x*10}水晶")
 
 bot.run("MTI2NTkyMjIxODc4NjAyOTYwOA.GPOcUG.22lGnV8oYt9uxdh27ojraaWNciTZo1pIKPB7XE")

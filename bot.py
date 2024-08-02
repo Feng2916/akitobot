@@ -78,7 +78,7 @@ async def pt1(interaction:discord.Interaction,pt:int,x:Choice[int],y:Choice[int]
     ]
 )
 async def pt2(interaction:discord.Interaction,x:int,pt:int,cs:int,l:int,s:int):
-    await interaction.response.send_message(f"可獲得{round(((cs/10+l*10+s)/x)*pt)}pt\n"
+    await interaction.response.send_message(f"可獲得{round((cs/10+l*10+s)/x*pt)}pt\n"
                                             f"共需打{math.ceil((cs/10+l*10+s)/x)}場")
 
 bot.run("MTI2NTkyMjIxODc4NjAyOTYwOA.GPOcUG.22lGnV8oYt9uxdh27ojraaWNciTZo1pIKPB7XE")

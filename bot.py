@@ -81,4 +81,24 @@ async def pt2(interaction:discord.Interaction,x:int,pt:int,cs:int,l:int,s:int):
     await interaction.response.send_message(f"可獲得{round((cs/10+l*10+s)/x*pt)}pt\n"
                                             f"共需打{math.ceil((cs/10+l*10+s)/x)}場")
 
+@bot.tree.command(name="pt估算資源",description="估算特定pt所需投入的資源")
+@app_commands.describe(x="開幾火",pt="所選開火情況下單場pt",r="目前的pt",e="欲達到的pt")
+@app_commands.choices(
+    x=[
+        Choice(name="1",value=1),
+        Choice(name="2",value=2),
+        Choice(name="3",value=3),
+        Choice(name="4",value=4),
+        Choice(name="5",value=5),
+        Choice(name="6",value=6),
+        Choice(name="7",value=7),
+        Choice(name="8",value=8),
+        Choice(name="9",value=9),
+        Choice(name="10",value=10),
+    ]
+)
+async def pt3(interaction:discord.Interaction,x:int,pt:int,r:int,e:int):
+    await interaction.response.send_message(f"再打{math.ceil((e-r)/pt)}場可達到{e}pt\n"
+                                            f"共需投入{(math.ceil((e-r)/pt))*x*10}水晶")
+
 bot.run("MTI2NTkyMjIxODc4NjAyOTYwOA.GPOcUG.22lGnV8oYt9uxdh27ojraaWNciTZo1pIKPB7XE")

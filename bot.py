@@ -103,4 +103,16 @@ async def pt3(interaction:discord.Interaction,x:int,t:int,pt:int,r:int,e:int):
                                             f"共需投入{(math.ceil((e-r)/pt))*x*10}水晶\n"
                                             f"需時{math.floor((math.ceil((e-r)/pt)*t)/3600)}小時{math.floor(((math.ceil((e-r)/pt))*t)%3600/60)}分鐘")
 
+@bot.tree.command(name="ccn",description="令房號顯示於頻道名稱中")
+@app_commands.describe(r="房號")
+async def rename(interaction:discord.Interaction,r:int):
+    if 10000<=r<=99999:
+        await interaction.channel.edit(name=r)
+        await interaction.response.send_message(f"成功更改房號為**{r}**\n"
+                                                f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
+    else:
+        await interaction.channel.edit(name=0)
+        await interaction.response.send_message(f"房號格式錯誤，已自動更改為預設頻道名稱\n"
+                                                f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
+
 bot.run("MTI2NTkyMjIxODc4NjAyOTYwOA.GPOcUG.22lGnV8oYt9uxdh27ojraaWNciTZo1pIKPB7XE")

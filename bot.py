@@ -31,14 +31,14 @@ async def help(interaction:discord.Interaction):
                          f"-# y：欲換算為開幾火",inline=False)
     ping_embed.add_field(name=f"**/re-pt**",value=f"估算投入特定資源可獲得的pt\n"
                          f"-# x：開幾火\n"
-                         f"-# t：歌曲總秒數\n"
+                         f"-# t：歌曲總秒數(可參考https://sekai.best/music)\n"
                          f"-# pt：所選開火及歌曲情況下的單場pt\n"
                          f"-# cs：投入水晶總數\n"
                          f"-# l：投入大罐總數\n"
                          f"-# s：投入小罐總數",inline=False)
     ping_embed.add_field(name=f"**/pt-re**",value=f"估算達到特定pt所需投入的資源\n"
                          f"-# x：開幾火\n"
-                         f"-# t：歌曲總秒數\n"
+                         f"-# t：歌曲總秒數(可參考https://sekai.best/music)\n"
                          f"-# pt：所選開火及歌曲情況下的單場pt\n"
                          f"-# r：目前的pt\n"
                          f"-# e：欲達到的pt",inline=False)

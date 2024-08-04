@@ -12,7 +12,7 @@ bot=commands.Bot(command_prefix="--",intents=discord.Intents.all())
 @bot.event
 async def on_ready():
     print("Bot ready")
-    activity = discord.Streaming(name="ULTRA C",url="https://www.youtube.com/watch?v=7WryveKlyX8")
+    activity = discord.Streaming(name="月光",url="https://www.youtube.com/watch?v=E5Wu8Ir6kdQ")
     await bot.change_presence(status = discord.Status.idle, activity = activity)
     try:
         synced=await bot.tree.sync()
@@ -134,7 +134,7 @@ async def pt3(interaction:discord.Interaction,x:int,t:int,pt:int,r:int,e:int):
 @app_commands.describe(r="房號")
 async def rename(interaction:discord.Interaction,r:int):
     if 10000<=r<=99999:
-        await interaction.channel.edit(name="{r}")
+        await interaction.channel.edit(name=r)
         await interaction.response.send_message(f"成功更改房號為**{r}**\n"
                                                 f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
     else:

@@ -20,7 +20,34 @@ async def on_ready():
     except Exception as e:
         print(e)
 
-@bot.tree.command(name="ping",description="檢視機器人的延遲")
+@bot.tree.command(name="help",description="查看あきとロボ指令表")
+async def help(interaction:discord.Interaction):
+    ping_embed=discord.Embed(title="あきとロボ指令一覽",color=discord.Color.orange())
+    ping_embed.add_field(name=f"機器人故障請洽：",value=f"**_3823051904**",inline=False)
+    ping_embed.add_field(name=f"**/help**",value=f"查看あきとロボ指令表",inline=False)
+    ping_embed.add_field(name=f"**/transpt**",value=f"換算不同體力下的單場pt\n"
+                         f"-# pt：換算前單場pt\n"
+                         f"-# x：換算前開幾火\n"
+                         f"-# y：欲換算為開幾火",inline=False)
+    ping_embed.add_field(name=f"**/re-pt**",value=f"估算投入特定資源可獲得的pt\n"
+                         f"-# x：開幾火\n"
+                         f"-# t：歌曲總秒數\n"
+                         f"-# pt：所選開火及歌曲情況下的單場pt\n"
+                         f"-# cs：投入水晶總數\n"
+                         f"-# l：投入大罐總數\n"
+                         f"-# s：投入小罐總數",inline=False)
+    ping_embed.add_field(name=f"**/pt-re**",value=f"估算達到特定pt所需投入的資源\n"
+                         f"-# x：開幾火\n"
+                         f"-# t：歌曲總秒數\n"
+                         f"-# pt：所選開火及歌曲情況下的單場pt\n"
+                         f"-# r：目前的pt\n"
+                         f"-# e：欲達到的pt",inline=False)
+    ping_embed.add_field(name=f"**/ccn**",value=f"令房號顯示於頻道名稱中\n"
+                         f"-# r：房號",inline=False)
+    ping_embed.add_field(name=f"**/ping**",value=f"檢視あきとロボ的延遲",inline=False)
+    await interaction.response.send_message(embed=ping_embed)
+
+@bot.tree.command(name="ping",description="檢視あきとロボ的延遲")
 async def ping(interaction:discord.Interaction):
     ping_embed=discord.Embed(title="Ping",color=discord.Color.orange())
     ping_embed.add_field(name=f"{bot.user.name}的延遲：",value=f"{round(bot.latency*1000)}ms",inline=False)
@@ -107,11 +134,11 @@ async def pt3(interaction:discord.Interaction,x:int,t:int,pt:int,r:int,e:int):
 @app_commands.describe(r="房號")
 async def rename(interaction:discord.Interaction,r:int):
     if 10000<=r<=99999:
-        await interaction.channel.edit(name=r)
+        await interaction.channel.edit(name="{r}")
         await interaction.response.send_message(f"成功更改房號為**{r}**\n"
                                                 f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
     else:
-        await interaction.channel.edit(name=0)
+        await interaction.channel.edit(name="00000_")
         await interaction.response.send_message(f"房號格式錯誤，已自動更改為預設頻道名稱\n"
                                                 f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
 

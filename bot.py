@@ -12,7 +12,7 @@ bot=commands.Bot(command_prefix="--",intents=discord.Intents.all())
 @bot.event
 async def on_ready():
     print("Bot ready")
-    activity = discord.Streaming(name="月光",url="https://www.youtube.com/watch?v=E5Wu8Ir6kdQ")
+    activity = discord.Streaming(name="Beyond the way",url="https://www.youtube.com/watch?v=UAzw5B-35kI")
     await bot.change_presence(status = discord.Status.idle, activity = activity)
     try:
         synced=await bot.tree.sync()
@@ -142,4 +142,4 @@ async def rename(interaction:discord.Interaction,r:int):
         await interaction.response.send_message(f"房號格式錯誤，已自動更改為預設頻道名稱\n"
                                                 f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
 
-bot.run("MTI2NTkyMjIxODc4NjAyOTYwOA.GPOcUG.22lGnV8oYt9uxdh27ojraaWNciTZo1pIKPB7XE")
+bot.run("TOKEN")

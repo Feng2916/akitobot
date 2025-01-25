@@ -7,12 +7,12 @@ import os
 from itertools import cycle
 import math
 
-bot=commands.Bot(command_prefix="--",intents=discord.Intents.all())
+bot=commands.Bot(command_prefix="PREFIX",intents=discord.Intents.all())
 
 @bot.event
 async def on_ready():
     print("Bot ready")
-    activity = discord.Streaming(name="",url="")
+    activity = discord.Streaming(name="NAME",url="URL")
     await bot.change_presence(status = discord.Status.idle, activity = activity)
     try:
         synced=await bot.tree.sync()
@@ -44,7 +44,7 @@ async def help(interaction:discord.Interaction):
                          f"-# e：欲達到的pt",inline=False)
     ping_embed.add_field(name=f"**/ccn**",value=f"令房號顯示於頻道名稱中\n"
                          f"-# r：房號",inline=False)
-    ping_embed.add_field(name=f"**/ping**",value=f"檢視あきとロボ的延遲",inline=False)
+    ping_embed.add_field(name=f"**aktfw (5字母+1空格，這不是斜線指令)**",value=f"令募集訊息顯示在特定頻道中\n",inline=False)
     await interaction.response.send_message(embed=ping_embed)
 
 @bot.tree.command(name="transpt",description="換算不同體力下的單場pt")
@@ -127,7 +127,23 @@ async def pt3(interaction:discord.Interaction,x:int,t:int,pt:int,r:int,e:int):
 @bot.tree.command(name="ccn",description="令房號顯示於頻道名稱中")
 @app_commands.describe(r="房號")
 async def rename(interaction:discord.Interaction,r:int):
-    if 10000<=r<=99999:
+    if 1<=r<=9:
+        await interaction.channel.edit(name='0000'+str(r))
+        await interaction.response.send_message(f"成功更改房號為**0000{r}**\n"
+                                                f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
+    elif 10<=r<=99:
+        await interaction.channel.edit(name='000'+str(r))
+        await interaction.response.send_message(f"成功更改房號為**000{r}**\n"
+                                                f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
+    elif 100<=r<=999:
+        await interaction.channel.edit(name='00'+str(r))
+        await interaction.response.send_message(f"成功更改房號為**00{r}**\n"
+                                                f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
+    elif 1000<=r<=9999:
+        await interaction.channel.edit(name='0'+str(r))
+        await interaction.response.send_message(f"成功更改房號為**0{r}**\n"
+                                                f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
+    elif 10000<=r<=99999:
         await interaction.channel.edit(name=r)
         await interaction.response.send_message(f"成功更改房號為**{r}**\n"
                                                 f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
@@ -136,4 +152,18 @@ async def rename(interaction:discord.Interaction,r:int):
         await interaction.response.send_message(f"房號格式錯誤，已自動更改為預設頻道名稱\n"
                                                 f"-# 注意：由於速率限制，十分鐘內僅能使用該指令兩次")
 
-bot.run("TOKEN")
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    words = ['aktfw ']
+    TargetChannel=bot.get_channel(CHANNEL_ID)
+
+    for word in words:
+        if word in message.content and (message.channel.id==CHANNEL_ID or message.channel.id==CHANNEL_ID or message.channel.id==CHANNEL_ID or message.channel.id==CHANNEL_ID or message.channel.id==CHANNEL_ID):
+            await TargetChannel.send(f"{message.content.replace('aktfw ', '🚗\n募車人：'+'<@'+str(message.author.id)+'>\n房間：<#'+str(message.channel.id)+'>\n\n')}")
+
+    await bot.process_commands(message)
+
+bot.run(TOKEN)

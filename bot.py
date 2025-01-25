@@ -12,7 +12,7 @@ bot=commands.Bot(command_prefix="--",intents=discord.Intents.all())
 @bot.event
 async def on_ready():
     print("Bot ready")
-    activity = discord.Streaming(name="Beyond the way",url="https://www.youtube.com/watch?v=UAzw5B-35kI")
+    activity = discord.Streaming(name="",url="")
     await bot.change_presence(status = discord.Status.idle, activity = activity)
     try:
         synced=await bot.tree.sync()
@@ -46,12 +46,6 @@ async def help(interaction:discord.Interaction):
                          f"-# r：房號",inline=False)
     ping_embed.add_field(name=f"**/ping**",value=f"檢視あきとロボ的延遲",inline=False)
     await interaction.response.send_message(embed=ping_embed)
-
-@bot.tree.command(name="ping",description="檢視あきとロボ的延遲")
-async def ping(interaction:discord.Interaction):
-    ping_embed=discord.Embed(title="Ping",color=discord.Color.orange())
-    ping_embed.add_field(name=f"{bot.user.name}的延遲：",value=f"{round(bot.latency*1000)}ms",inline=False)
-    await interaction.response.send_message(embed=ping_embed,ephemeral=True)
 
 @bot.tree.command(name="transpt",description="換算不同體力下的單場pt")
 @app_commands.describe(pt="換算前單場pt",x="換算前開幾火",y="欲換算為開幾火")
